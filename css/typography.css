@@ -1,0 +1,94 @@
+
+/* typography */
+
+
+@font-face {
+    font-family: poppins;
+    src: url('../fonts/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: poppins-bold;
+    src: url('../fonts/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'minecraftTen';
+    src: url('../fonts/MinecraftTen.ttf');
+    /* src: url('../fonts/MinecraftTen.ttf') format('truetype'); */
+}
+
+
+@font-face {
+    font-family: fa-solid;
+    src: url("../fonts/font-awesome/fa-solid-900.ttf");
+}
+@font-face {
+    font-family: fa;
+    src: url("../fonts/font-awesome/fa-regular-400.ttf");
+}
+
+/* font awsome */
+
+.fa::before {
+    font-family: fa;
+}
+.fa-solid::before {
+    font-family: fa-solid;
+}
+
+.fa.trash::before {
+    content: "\f2ed";
+}
+
+.fa-solid.right::before {
+    content: "\f038";
+}
+
+.fa-solid.left::before {
+    content: "\f036";
+}
+
+.fa-solid.center::before {
+    content: "\f037";
+}
+
+.fa.plus::before {
+    content: "\f0fe";
+}
+
+.fa-solid.switch::before {
+    content: "\f363";
+}
+
+.fa-solid.up::before {
+    content: "\f102";
+}
+
+.fa-solid.down::before {
+    content: "\f103";
+}
+
+.fa-solid.increase::before {
+    content: "\f161";
+}
+
+.fa-solid.decrease::before {
+    content: "\f160";
+}
+
+.fa-solid.download::before {
+    content: "\f019";
+}
+
+.fa.save::before {
+    content: "\f0c7";
+}
+
+.fa-solid.fill::before {
+    content: "\f576";
+}
+
+.fa-solid.outline::before {
+    content: "\f1fc";
+}

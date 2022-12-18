@@ -1,0 +1,30 @@
+
+body.about .about-screen,
+body.about .about-modal{
+    opacity: 1;
+    visibility: visible; 
+    z-index:100;
+}
+
+.about-modal{
+    opacity:0;
+    visibility:hidden;
+    text-align: center;
+    position:absolute;
+    left:50%;
+    top:50%;
+    cursor: default;
+    transform: translate(-50%,-50%);
+    background-color:  var(--clr6);
+    padding:20px;
+    border-radius: 20px;
+    border:2px solid  var(--clr4);
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index:1000;
+}
+
+.about-modal > *{
+    line-height: 1.75em;;
+    margin: 0;
+    font-size:1.15em;
+}

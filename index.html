@@ -5,47 +5,152 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link href="fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
-    <!-- <link href="fonts/font-awesome/css/solid.min.css" rel="stylesheet" type="text/css"> -->
-    <!-- <link href="fonts/font-awesome/css/fontawesome.css" rel="stylesheet" type="text/css"> -->
-    <!-- <link rel="stylesheet" href="css/style.css"> -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="fonts/font-awesome/css/all.css">
+    <link rel="shortcut icon" href="img/goat.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/meme.css">
     <title>Document</title>
 </head>
 
-<body>
+<body onload="onInit()" class="hide-overflow">
+    <div class="screen main-screen" onclick="onToggleMenu()"></div>
+    <div class="screen about-screen" onclick="onToggleAbout()"></div>
+    <header class="main-header background">
+        <div class="main-layout flex align-center space-between">
+            <img src="img/LOGO/LOGO.png" alt="logo" class="logo" onclick="onToggleAbout()" />
+            <ul class="main-nav flex clean-list justify-center">
+                <li class=""><a href="#saved" class="nav-btn pointer" class="" onclick="onViewSaved()">Saved</a></li>
+                <li class=""><a href="#gallery" class="nav-btn pointer" class="active" onclick="onGallery()">Gallery</a>
+                </li>
+                <li class=""><a href="#about" class="nav-btn pointer" onclick="onToggleAbout()">About</a></li>
+            </ul>
+            <button class="menu-btn" onclick="onToggleMenu()"></button>
 
-    <header class="main-header full main-layout ">
-        <div class="header-container flex align-center space-between">
-            <img src="img/LOGO/LOGO.png" alt="logo" class="logo pointer" />
-            <nav class="main-nav">
-                <ul class="nav-bar flex clean-list">
-                    <li class=""><a href="#gallery" class="pointer" class="active">Gallery</a></li>
-                    <li class=""><a href="#about" class="pointer">About</a></li>
-                </ul>
-            </nav>
+            <div class="about-modal flex column justify-center">
+                <p>Coding Academy</p>
+                <p>Meme Generator</p>
+                <br>
+                <p>Created by Elichay Kaplan</p>
+                <p>Dec-2022</p>
+            </div>
         </div>
     </header>
 
-    <main class="gallery flex align-center">
-        <nav class="filter">
-            <div class="search-nav"></div>
-            <input class="search-nav-input" type="text" list="searchKeywords" oninput="onFilterImgs(this.value)" placeholder="Search Image">
-            <!-- <i class="fa fa-regular fa-magnifying-glass"></i> -->
-        <div class="search-items"></div>
-        </nav>
-        <div class="img-grid">
+    <main class="main-layout">
+        <section class="gallery main-layout">
+            <nav class="gallery-filter flex align-center wrap justify-center">
+                <div class="search-nav">
+                    <input class="search-nav-input" type="text" list="searchKeywords" oninput="onFilterImgs(this.value)"
+                        placeholder="Search Image">
+                </div>
+                <div class="search-items">
+                    <ul class="search-words clean-list grid align-center">
+                        <!-- add render for search keys... -->
+                        <li class="search-key">
+                            <a href="#" onclick="onClickSearchWord('All')" style="font-size:28px">All</a>
+                        </li>
+                        <li class="search-key">
+                            <a href="#" onclick="onClickSearchWord('funny')" style="font-size:24px">funny</a>
+                        </li>
+                        <li class="search-key">
+                            <a href="#" onclick="onClickSearchWord('trump')" style="font-size:14px">trump</a>
+                        </li>
+                        <li class="search-key">
+                            <a href="#" onclick="onClickSearchWord('dog')" style="font-size:20px">dog</a>
+                        </li>
+                        <li class="search-key">
+                            <a href="#" onclick="onClickSearchWord('cat')" style="font-size:22px">cat</a>
+                        </li>
+                        <li class="search-key">
+                            <a href="#" onclick="onClickSearchWord('baby')" style="font-size:24px">baby</a>
+                        </li>
+                        <li class="search-key">
+                            <a href="#" onclick="onClickSearchWord('movie')" style="font-size:18px">movie</a>
+                        </li>
+                        <li class="search-key">
+                            <a href="#" onclick="onClickSearchWord('money')" style="font-size:16px">money</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <button class="btn btn-more more background" onclick="onSearchMore()" data-trans="more">More</button>
+            </nav>
+            <section class="grid-imgs img-grid-container main-layout grid justify-center align-center">
+                <!-- grid comes hear -->
+            </section>
+        </section>
+
+        <section class="meme-editor main-layout flex space-between wrap hide">
+            <div class="canvas-background rounded">
+                <div class="canvas-container rounded">
+                    <canvas id="mame-canvas" width="400" height="400"></canvas>
+                </div>
+            </div>
+
+            <div class="line-editor-container rounded">
+                <input type="text" class="text-input" placeholder="Write here" oninput="onTextInput(this.value)">
+                <div class="lines-editor flex justify-center">
+                    <button class="editor-btn fa-solid switch" onclick="onSwitchLine()"
+                        data-title="switch Line"></button>
+                    <button class="editor-btn fa-solid up" onclick="onMoveY(-10)" data-title="Line Up"></button>
+                    <button class="editor-btn fa-solid down" onclick="onMoveY(10)" data-title="Line Down"></button>
+                    <button class="editor-btn fa trash" onclick="onDeleteLine()" data-title="Delete Line"></button>
+                    <button class="editor-btn fa plus" onclick="onAddLine()" data-title="Add Line"></button>
+                </div>
+
+                <div class="font-editor grid">
+                    <button class="editor-btn fa-solid outline" onclick="onSetColor(true)" data-title="Outline">
+                        <input type="color" class="hide color-outline" />
+                    </button>
+                    <button class="editor-btn fa-solid fill" onclick="onSetColor(false)" data-title="Fill Text">
+                        <input type="color" class="hide color-fill" />
+                    </button>
+                    <button class="editor-btn fa-solid increase" onclick="onSetFontSize(5)"
+                        data-title="Size Increase"></button>
+                    <button class="editor-btn fa-solid decrease" onclick="onSetFontSize(-5)"
+                        data-title="Size Decresde"></button>
+                    <button class="editor-btn fa-solid right" onclick="onAlign('right')"
+                        data-title="Align Right"></button>
+                    <button class="editor-btn fa-solid center" onclick="onAlign('center')"
+                        data-title="Align Center"></button>
+                    <button class="editor-btn fa-solid left" onclick="onAlign('left')" data-title="Align Left"></button>
+                    <select class="font-selector" onchange="onSetFont(this.value)" name="font">
+                        <option value="Impact">Impact</option>
+                        <option value="Poppins">Poppins</option>
+                        <option value="minecraftTen">minecraftTen</option>
+                    </select>
+                </div>
+                <div class="export-img flex space-between">
+                    <button class="editor-btn export-btn fa save" onclick="onSave()" data-title="Save"></button>
 
 
+                    <button class="editor-btn export-btn download" data-title="Download">
+                        <a href="#" onclick="onDownload(this)" download="my-mem.jpg">
+                            <i class="fa fa-solid fa-download"></i>
+                        </a>
+                    </button>
+                </div>
 
 
-        </div>
+            </div>
+        </section>
 
+        <section class="saved-mems main-layout hide">
 
+            <section class="saved-imgs saved-img-grid-container main-layout grid justify-center align-center">
+                      <!-- grid comes hear -->
+            </section>
+
+        </section>
 
     </main>
 
-
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/util.services.js"></script>
+    <script src="js/services/editor.services.js"></script>
+    <script src="js/services/gallery.services.js"></script>
+    <script src="js/services/canvas.services.js"></script>
+    <script src="js/gallery.Controller.js"></script>
+    <script src="js/editor.Controller.js"></script>
 </body>
 
 </html>
